@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import VideoCard from "../components/VideoCard";
+import VideoCard from "../components/videocard";
+import AIChat from "../components/aichat";
 import axios from "axios";
 
 function Home() {
@@ -14,7 +15,12 @@ function Home() {
 
   return (
     <div className="site-container">
-      <marquee className="marquee">{quote}</marquee>
+      {quote && (
+        <div className="quote-banner">
+          <span className="quote-icon" aria-hidden>🐾</span>
+          <marquee className="marquee" behavior="scroll" scrollamount="5">{quote}</marquee>
+        </div>
+      )}
       <h1 className="page-title">Pet Care Tips 🐾</h1>
       <div className="grid-cards">
         <VideoCard title="Nutrition" videoSrc="/assets/videos/food.mp4" description="Balanced diets with quality food keep pets strong, active, and full of life." />
@@ -22,6 +28,9 @@ function Home() {
         <VideoCard title="Exercise" videoSrc="/assets/videos/exercise.mp4" description="Daily walks and playtime are key to keeping pets fit and stress-free." />
         <VideoCard title="Health" videoSrc="/assets/videos/health.mp4" description="Routine vet visits and vaccinations help prevent diseases and ensure long life." />
       </div>
+      
+      {/* AI Chat component inserted on Home page */}
+      <AIChat />
     </div>
   );
 }
