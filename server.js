@@ -19,6 +19,11 @@ app.post('/api/chat', async (req, res) => {
       return res.status(400).json({ error: 'prompt is required' });
     }
 
+    if (!OPENAI_KEY) {
+      // Clear, helpful error so the frontend can display useful instructions
+      return res.status(500).json({ error: 'OPENAI_API_KEY is not configured on the server. Set it in your .env.' });
+    }
+
     const resp = await axios.post('https://api.openai.com/v1/chat/completions', {
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],

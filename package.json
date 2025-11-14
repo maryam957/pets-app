@@ -19,6 +19,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "proxy": "http://localhost:3000",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17",
     "autoprefixer": "^10.4.22",

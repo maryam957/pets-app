@@ -13,6 +13,48 @@ body { font-family: Arial, Helvetica, sans-serif; background: #fafafa; margin: 0
 .page-title { font-size:1.875rem; font-weight:700; margin-bottom:1rem; }
 .marquee { margin-bottom:1rem; }
 
+/* Layout: main + AI sidebar (off-canvas, togglable) */
+.app-body { display:flex; gap:1.5rem; align-items:flex-start; max-width:1400px; margin:0 auto; padding:1rem; position:relative; }
+.site-main { flex: 1 1 auto; }
+.ai-sidebar {
+  position: fixed;
+  top: 72px;
+  right: 0;
+  width: 340px;
+  height: calc(100vh - 72px);
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(8,15,36,0.18);
+  border-left: 1px solid rgba(0,0,0,0.04);
+  transform: translateX(110%);
+  transition: transform 0.28s cubic-bezier(.2,.9,.2,1);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+.ai-sidebar.open { transform: translateX(0); }
+.ai-sidebar.closed { transform: translateX(110%); }
+.ai-sidebar .card { max-height: 60vh; overflow: auto; }
+
+/* Backdrop shown when sidebar is open on small screens */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 50;
+}
+
+/* Toggle button in navbar */
+.btn-toggle-sidebar { background: transparent; border: none; cursor: pointer; color: inherit; padding: 0.35rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; }
+.btn-toggle-sidebar svg { display: block; }
+.btn-toggle-sidebar:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+
+@media (max-width: 1024px) {
+  .app-body { flex-direction:column; padding:0.5rem; }
+  .ai-sidebar { width: 100%; left: 0; right: 0; top: 64px; height: calc(100vh - 64px); }
+}
+
 /* Quote banner shown on Home */
 .quote-banner {
   max-width: 1000px;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import VideoCard from "../components/videocard";
-import AIChat from "../components/aichat";
 import axios from "axios";
 
 function Home() {
@@ -29,8 +28,7 @@ function Home() {
         <VideoCard title="Health" videoSrc="/assets/videos/health.mp4" description="Routine vet visits and vaccinations help prevent diseases and ensure long life." />
       </div>
       
-      {/* AI Chat component inserted on Home page */}
-      <AIChat />
+      {/* AI Chat is now available via the site sidebar (toggle in the header) */}
     </div>
   );
 }
