@@ -25,18 +25,18 @@ function AIChat() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-6">
+    <div className="max-w-md center mt-6">
       <form onSubmit={handleSubmit} className="mb-2">
         <input
           type="text"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Ask AI..."
-          className="border p-2 rounded w-full"
+          className="input"
         />
-        <button type="submit" className="mt-2 bg-blue-500 text-white p-2 rounded w-full">Ask AI</button>
+        <button type="submit" className="btn-primary" style={{marginTop: '0.5rem'}}>Ask AI</button>
       </form>
-      <div className="border p-2 rounded min-h-[100px]">{response}</div>
+      <div className="card" style={{minHeight: '100px'}}>{response}</div>
     </div>
   );
 }

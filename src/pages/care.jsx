@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import VideoCard from "src/components/VideoCard";
+import VideoCard from "../components/videocard";
 import axios from "axios";
 
 function Care() {
@@ -12,9 +12,9 @@ function Care() {
   }, []);
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">Pet Care Tips 🐾</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="site-container">
+      <h1 className="page-title">Pet Care Tips 🐾</h1>
+      <div className="grid-cards">
         {careTips.map((tip, idx) => (
           <VideoCard key={idx} title={tip.title} videoSrc={`/assets/videos/${tip.video}`} description={tip.description} />
         ))}

@@ -5,27 +5,27 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto flex items-center justify-between p-4">
+    <header className="site-header">
+      <div className="nav-inner">
         <Link to="/">
-          <img src="/assets/images/logo.png" alt="Pets Logo" className="h-12" />
+          <img src="/assets/images/logo.png" alt="Pets Logo" className="logo" />
         </Link>
         <nav>
           <button
-            className="md:hidden"
+            className="nav-toggle"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             ☰
           </button>
-          <ul className={`md:flex md:items-center ${menuOpen ? "block" : "hidden"}`}>
-            <li className="mx-2">
-              <NavLink to="/gallery" className={({ isActive }) => isActive ? "text-blue-500" : ""}>Gallery</NavLink>
+          <ul className={`nav-links ${menuOpen ? "open" : "hidden"}`}>
+            <li className="nav-item">
+              <NavLink to="/gallery" className={({ isActive }) => isActive ? "nav-link-active" : ""}>Gallery</NavLink>
             </li>
-            <li className="mx-2">
-              <NavLink to="/care" className={({ isActive }) => isActive ? "text-blue-500" : ""}>Care</NavLink>
+            <li className="nav-item">
+              <NavLink to="/care" className={({ isActive }) => isActive ? "nav-link-active" : ""}>Care</NavLink>
             </li>
-            <li className="mx-2">
-              <NavLink to="/contact" className={({ isActive }) => isActive ? "text-blue-500" : ""}>Contact</NavLink>
+            <li className="nav-item">
+              <NavLink to="/contact" className={({ isActive }) => isActive ? "nav-link-active" : ""}>Contact</NavLink>
             </li>
           </ul>
         </nav>

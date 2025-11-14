@@ -9,9 +9,9 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="site-wrapper">
       <Navbar />
-      <main className="flex-1">
+      <main className="site-main">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<Gallery />} />
