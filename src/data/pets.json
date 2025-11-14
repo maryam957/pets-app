@@ -1,0 +1,25 @@
+[
+  {
+    "type": "Dogs",
+    "icon": "🐶",
+    "animals": [
+      { "name": "Max", "age": "2 years", "gender": "Male", "image": "dog1.jpeg" },
+      { "name": "Bella", "age": "3 years", "gender": "Female", "image": "dog2.jpeg" }
+    ]
+  },
+  {
+    "type": "Cats",
+    "icon": "🐱",
+    "animals": [
+      { "name": "Luna", "age": "2 years", "gender": "Female", "image": "cat1.jpeg" },
+      { "name": "Oliver", "age": "1.5 years", "gender": "Male", "image": "cat2.jpeg" }
+    ]
+  },
+  {
+    "type": "Rabbits",
+    "icon": "🐰",
+    "animals": [
+      { "name": "Snowball", "age": "1 year", "gender": "Male", "image": "rabbit1.jpeg" }
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Nutrition",
+    "video": "food.mp4",
+    "description": "Balanced diets with quality food keep pets strong, active, and full of life."
+  },
+  {
+    "title": "Grooming",
+    "video": "groom.mp4",
+    "description": "Regular baths, brushing, and nail trimming keep pets clean and comfortable."
+  },
+  {
+    "title": "Exercise",
+    "video": "exercise.mp4",
+    "description": "Daily walks and playtime are key to keeping pets fit and stress-free."
+  },
+  {
+    "title": "Health",
+    "video": "health.mp4",
+    "description": "Routine vet visits and vaccinations help prevent diseases and ensure long life."
+  }
+]

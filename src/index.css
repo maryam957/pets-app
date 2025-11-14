@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fdfdfd;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
