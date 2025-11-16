@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Gallery from "./pages/Gallery";
-import Care from "./pages/Care";
-import Contact from "./pages/Contact";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Home from "./pages/home";
+import Gallery from "./pages/gallery";
+import Care from "./pages/care";
+import Contact from "./pages/contact";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 import AIChat from "./components/aichat";
 import AdminMessages from "./pages/adminmessages";
 
