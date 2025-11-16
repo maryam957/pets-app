@@ -54,44 +54,69 @@ const Contact = () => {
   
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Contact Us</h1>
-      {success && (
-        <div className="bg-green-500 text-white p-3 rounded mb-4">
-          Your message has been sent!
+    <div className="site-container">
+      <h1 className="page-title">Contact Us</h1>
+      
+      <div className="contact-container">
+        <div className="contact-info">
+          <h2>Get In Touch 🐾</h2>
+          <p><i className="icon">📧</i> Email: support@petsapp.com</p>
+          <p><i className="icon">📞</i> Phone: +1 (555) 123-4567</p>
+          <p><i className="icon">📍</i> Address: 123 Pet Street, Animal City</p>
+          <p style={{marginTop: '1rem', lineHeight: '1.8'}}>We love hearing from pet lovers! Whether you have questions, feedback, or just want to share your pet's story, feel free to reach out.</p>
         </div>
-      )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          name="name"
-          placeholder="Name"
-          value={form.name}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
+        <div className="contact-form">
+          <h2 style={{marginBottom: '1rem', fontSize: '1.5rem'}}>Send Us a Message</h2>
+          
+          {success && (
+            <div className="card" style={{background: '#d1fae5', color: '#065f46', marginBottom: '1rem', padding: '0.75rem'}}>
+              ✓ Your message has been sent successfully!
+            </div>
+          )}
 
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
+          <form onSubmit={handleSubmit} className="contact-form-fields">
+            <div className="form-group">
+              <label>Name</label>
+              <input
+                name="name"
+                placeholder="Your Name"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        <textarea
-          name="message"
-          placeholder="Message"
-          value={form.message}
-          onChange={handleChange}
-          className="w-full p-2 border rounded h-32"
-        ></textarea>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                name="email"
+                type="email"
+                placeholder="your.email@example.com"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        <button className="bg-blue-600 text-white px-4 py-2 rounded">
-          Send
-        </button>
-      </form>
+            <div className="form-group">
+              <label>Message</label>
+              <textarea
+                name="message"
+                placeholder="Tell us what's on your mind..."
+                value={form.message}
+                onChange={handleChange}
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" className="submit-btn">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
