@@ -7,6 +7,8 @@ import Contact from "./pages/Contact";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AIChat from "./components/aichat";
+import AdminMessages from "./pages/adminmessages";
+
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -18,6 +20,7 @@ function App() {
       <div className="app-body">
         <main className="site-main">
           <Routes>
+          <Route path="/admin" element={<AdminMessages />} />
             <Route path="/" element={<Home />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/care" element={<Care />} />
