@@ -33,8 +33,8 @@ function AIChat() {
     } catch (err) {
       console.error('AIChat error', err?.response?.data || err.message || err);
       const remoteMsg = err?.response?.data?.error || '';
-      if (remoteMsg && remoteMsg.toLowerCase().includes('openai_api_key')) {
-        setError('Server is missing OPENAI_API_KEY. You can add a key to use the real AI, or use Demo Mode below.');
+      if (remoteMsg && (remoteMsg.toLowerCase().includes('gemini_api_key') || remoteMsg.toLowerCase().includes('api_key'))) {
+        setError('Server is missing GEMINI_API_KEY. You can add a key to use the real AI, or use Demo Mode below.');
       } else {
         setError('Sorry — could not reach the AI service.');
       }
@@ -45,60 +45,70 @@ function AIChat() {
 
   const enableDemo = () => {
     setDemoMode(true);
-    setError('Demo mode enabled — this uses canned responses, not OpenAI.');
+    setError('Demo mode enabled — this uses canned responses, not Gemini AI.');
   };
 
   const openSignup = () => {
-    window.open('https://platform.openai.com/signup', '_blank', 'noopener');
+    window.open('https://makersuite.google.com/app/apikey', '_blank', 'noopener');
   };
 
   return (
-    <div className="max-w-md center mt-6">
-      <form onSubmit={handleSubmit} className="mb-2">
-        <input
-          type="text"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Ask AI..."
-          className="input"
-          aria-label="Ask AI"
-        />
-        <button type="submit" className="btn-primary" style={{marginTop: '0.5rem'}} disabled={loading}>
-          {loading ? 'Thinking...' : 'Ask AI'}
-        </button>
-      </form>
+    <div className="ai-chat-container">
+      <div className="ai-chat-header">
+        <h3>🤖 AI Pet Assistant</h3>
+        {demoMode && <span className="demo-badge">Demo Mode</span>}
+      </div>
 
-      {/* When server reports missing key, show actions */}
-      {error && (
-        <div className="card" style={{background:'#fee2e2', color:'#991b1b'}}>
-          <div style={{marginBottom: '0.5rem'}}>{error}</div>
-          <div style={{display:'flex', gap:'0.5rem'}}>
-            <button className="btn" onClick={openSignup}>Get OpenAI Key</button>
-            <button className="btn" onClick={enableDemo}>Use Demo Mode</button>
-          </div>
-        </div>
-      )}
-
-      {demoMode && (
-        <div className="card" style={{background:'#eef2ff', color:'#1e3a8a', marginTop:'0.6rem'}}>
-          Demo mode is active — responses are simulated locally.
-        </div>
-      )}
-
-      <div className="card" style={{minHeight: '120px'}}>
+      <div className="chat-messages" style={{maxHeight: '400px', overflowY: 'auto', marginBottom: '1rem', padding: '0.75rem', background: '#f9fafb', borderRadius: '8px'}}>
         {messages.length === 0 ? (
-          <div className="mb-1">No messages yet — ask a question above.</div>
+          <div style={{textAlign: 'center', color: '#6b7280', padding: '2rem 1rem'}}>
+            <p>👋 Ask me anything about pet care!</p>
+          </div>
         ) : (
           <div>
             {messages.map((m, i) => (
-              <div key={i} style={{marginBottom: '0.75rem'}}>
-                <strong style={{display:'block', marginBottom:'0.25rem'}}>{m.role === 'user' ? 'You' : 'AI'}</strong>
-                <div>{m.text}</div>
+              <div key={i} className={`chat-message ${m.role}`} style={{
+                marginBottom: '0.75rem',
+                padding: '0.75rem',
+                borderRadius: '8px',
+                background: m.role === 'user' ? '#e0f2fe' : '#fff',
+                border: m.role === 'assistant' ? '1px solid #e5e7eb' : 'none'
+              }}>
+                <strong style={{display:'block', marginBottom:'0.4rem', color: m.role === 'user' ? '#0369a1' : '#059669'}}>
+                  {m.role === 'user' ? '👤 You' : '🤖 AI'}
+                </strong>
+                <div style={{color: '#374151', lineHeight: '1.5'}}>{m.text}</div>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      {error && (
+        <div className="card" style={{background:'#fee2e2', color:'#991b1b', marginBottom: '1rem', padding: '0.75rem', fontSize: '0.9rem'}}>
+          <div style={{marginBottom: '0.5rem'}}>{error}</div>
+          <div style={{display:'flex', gap:'0.5rem', flexWrap: 'wrap'}}>
+            <button className="btn" style={{fontSize: '0.85rem', padding: '0.4rem 0.8rem'}} onClick={openSignup}>Get Gemini Key</button>
+            <button className="btn" style={{fontSize: '0.85rem', padding: '0.4rem 0.8rem'}} onClick={enableDemo}>Use Demo Mode</button>
+          </div>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
+        <input
+          type="text"
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="Ask about pet care, training, health..."
+          className="input"
+          style={{width: '100%', padding: '0.75rem', fontSize: '0.95rem'}}
+          aria-label="Ask AI"
+          disabled={loading}
+        />
+        <button type="submit" className="btn-primary" style={{width: '100%', padding: '0.75rem'}} disabled={loading}>
+          {loading ? '🔄 Thinking...' : '💬 Send'}
+        </button>
+      </form>
     </div>
   );
 }
