@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { db } from "../services/firebase";
 import { collection, addDoc } from "firebase/firestore";
@@ -20,13 +21,14 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Simple validation
     if (!form.name || !form.email || !form.message) {
       alert("Please fill in all fields.");
+      console.log("Project ID:", import.meta.env.VITE_FIREBASE_PROJECT_ID);
       return;
     }
-
+  
     try {
       await addDoc(collection(db, "messages"), {
         name: form.name,
@@ -34,9 +36,11 @@ const Contact = () => {
         message: form.message,
         createdAt: new Date(),
       });
-
+  
       setSuccess(true);
-
+  
+      alert("Message sent successfully!");   // ✅ Show alert on success
+  
       setForm({
         name: "",
         email: "",
@@ -47,11 +51,11 @@ const Contact = () => {
       alert("Something went wrong. Try again.");
     }
   };
+  
 
   return (
     <div className="p-6 max-w-lg mx-auto">
       <h1 className="text-3xl font-bold mb-4">Contact Us</h1>
-
       {success && (
         <div className="bg-green-500 text-white p-3 rounded mb-4">
           Your message has been sent!
