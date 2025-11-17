@@ -4,7 +4,9 @@
     "icon": "🐶",
     "animals": [
       { "name": "Max", "age": "2 years", "gender": "Male", "image": "dog1.jpeg" },
-      { "name": "Bella", "age": "3 years", "gender": "Female", "image": "dog2.jpeg" }
+      { "name": "Bella", "age": "3 years", "gender": "Female", "image": "dog2.jpeg" },
+      { "name": "Charlie", "age": "1 year", "gender": "Male", "image": "dog3.jpeg" },
+      { "name": "Buddy", "age": "4 years", "gender": "Male", "image": "dog4.jpeg" }
     ]
   },
   {
@@ -12,14 +14,63 @@
     "icon": "🐱",
     "animals": [
       { "name": "Luna", "age": "2 years", "gender": "Female", "image": "cat1.jpeg" },
-      { "name": "Oliver", "age": "1.5 years", "gender": "Male", "image": "cat2.jpeg" }
+      { "name": "Oliver", "age": "1.5 years", "gender": "Male", "image": "cat2.jpeg" },
+      { "name": "Milo", "age": "3 years", "gender": "Male", "image": "cat3.jpeg" },
+      { "name": "Simba", "age": "2 years", "gender": "Male", "image": "cat4.jpeg" },
+      { "name": "Cleo", "age": "1 year", "gender": "Female", "image": "cat5.jpeg" },
+      { "name": "Leo", "age": "4 years", "gender": "Male", "image": "cat6.jpeg" },
+      { "name": "Shadow", "age": "2.5 years", "gender": "Male", "image": "cat7.jpeg" },
+      { "name": "Whiskers", "age": "3 years", "gender": "Female", "image": "cat8.jpeg" },
+      { "name": "Mittens", "age": "1.5 years", "gender": "Female", "image": "cat9.jpeg" },
+      { "name": "Tiger", "age": "2 years", "gender": "Male", "image": "cat10.jpeg" },
+      { "name": "Smokey", "age": "3.5 years", "gender": "Male", "image": "cat11.jpeg" },
+      { "name": "Felix", "age": "1 year", "gender": "Male", "image": "cat12.jpeg" },
+      { "name": "Ginger", "age": "2 years", "gender": "Female", "image": "cat13.jpeg" }
     ]
   },
   {
     "type": "Rabbits",
     "icon": "🐰",
     "animals": [
-      { "name": "Snowball", "age": "1 year", "gender": "Male", "image": "rabbit1.jpeg" }
+      { "name": "Snowball", "age": "1 year", "gender": "Male", "image": "rabbit1.jpeg" },
+      { "name": "Cotton", "age": "2 years", "gender": "Female", "image": "rabbit2.jpeg" },
+      { "name": "Thumper", "age": "1.5 years", "gender": "Male", "image": "rabbit3.jpeg" },
+      { "name": "Fluffy", "age": "3 years", "gender": "Female", "image": "rabbit4.jpeg" }
+    ]
+  },
+  {
+    "type": "Birds",
+    "icon": "🦜",
+    "animals": [
+      { "name": "Tweety", "age": "1 year", "gender": "Female", "image": "bird1.jpeg" },
+      { "name": "Polly", "age": "2 years", "gender": "Female", "image": "bird2.jpeg" },
+      { "name": "Rio", "age": "3 years", "gender": "Male", "image": "bird3.jpeg" },
+      { "name": "Sky", "age": "1.5 years", "gender": "Male", "image": "bird4.jpeg" },
+      { "name": "Sunny", "age": "2 years", "gender": "Female", "image": "bird5.jpeg" },
+      { "name": "Chirpy", "age": "1 year", "gender": "Male", "image": "bird6.jpeg" }
+    ]
+  },
+  {
+    "type": "Fish",
+    "icon": "🐟",
+    "animals": [
+      { "name": "Nemo", "age": "1 year", "gender": "Male", "image": "fish1.jpeg" },
+      { "name": "Bubbles", "age": "2 years", "gender": "Female", "image": "fish2.jpeg" },
+      { "name": "Goldie", "age": "1.5 years", "gender": "Female", "image": "fish3.jpeg" },
+      { "name": "Splash", "age": "1 year", "gender": "Male", "image": "fish4.jpeg" },
+      { "name": "Finley", "age": "2 years", "gender": "Male", "image": "fish5.jpeg" }
+    ]
+  },
+  {
+    "type": "Hamsters",
+    "icon": "🐹",
+    "animals": [
+      { "name": "Nibbles", "age": "1 year", "gender": "Male", "image": "hamster1.jpeg" },
+      { "name": "Squeaky", "age": "1.5 years", "gender": "Female", "image": "hamster2.jpeg" },
+      { "name": "Peanut", "age": "1 year", "gender": "Male", "image": "hamster3.jpeg" },
+      { "name": "Whiskers", "age": "2 years", "gender": "Female", "image": "hamster4.jpeg" },
+      { "name": "Fuzzy", "age": "1 year", "gender": "Male", "image": "hamster5.jpeg" },
+      { "name": "Tiny", "age": "1.5 years", "gender": "Female", "image": "hamster6.jpeg" }
     ]
   }
 ]
