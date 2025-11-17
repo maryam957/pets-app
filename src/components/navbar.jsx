@@ -1,82 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "./pages/home";
-import Gallery from "./pages/gallery";
-import Care from "./pages/care";
-import Contact from "./pages/contact";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
-import AIChat from "./components/aichat";
-import AdminMessages from "./pages/adminmessages";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
-function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem("theme");
-    return saved === "dark" ? "dark" : "light";
-  });
-
-  const location = useLocation();
-
-  // 🔥 Save last visited page (except Home & Admin)
-  useEffect(() => {
-    if (location.pathname !== "/" && location.pathname !== "/admin") {
-      localStorage.setItem("lastVisited", location.pathname);
-    }
-  }, [location]);
-
-  // 🔥 Apply theme + save in localStorage
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    if (theme === "dark") {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-  };
+function Navbar({ onToggleSidebar, theme, onToggleTheme }) {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="site-wrapper">
-      <Navbar
-        onToggleSidebar={() => setSidebarOpen((v) => !v)}
-        theme={theme}
-        onToggleTheme={toggleTheme}
-      />
-
-      <div className="app-body">
-        <main className="site-main">
-          <Routes>
-            <Route path="/admin" element={<AdminMessages />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/care" element={<Care />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-
-        <aside
-          className={`ai-sidebar ${sidebarOpen ? "open" : "closed"}`}
-          aria-label="AI Chat"
-        >
-          <AIChat />
-        </aside>
-
-        {sidebarOpen && (
-          <div
-            className="sidebar-backdrop"
-            onClick={() => setSidebarOpen(false)}
-            aria-hidden
-          />
-        )}
+    <header className="site-header">
+      <div className="nav-inner">
+        <Link to="/">
+          <img src="/assets/images/logo.png" alt="Pets Logo" className="logo" />
+        </Link>
+        <nav>
+          <button
+            className="nav-toggle"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            ☰
+          </button>
+          <button className="btn-toggle-sidebar" onClick={onToggleSidebar} aria-label="Toggle AI Chat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+              <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <ul className={`nav-links ${menuOpen ? "open" : "hidden"}`}>
+            <li className="nav-item">
+              <NavLink to="/gallery" className={({ isActive }) => isActive ? "nav-link-active" : ""}>Gallery</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/care" className={({ isActive }) => isActive ? "nav-link-active" : ""}>Care</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/contact" className={({ isActive }) => isActive ? "nav-link-active" : ""}>Contact</NavLink>
+            </li>
+          </ul>
+        </nav>
       </div>
-
-      <Footer />
-    </div>
+    </header>
   );
 }
 
-export default App;
+export default Navbar;

@@ -1,5 +1,124 @@
 /* Import Google Font - must come before other rules */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+/* ========================= */
+/* HOME PAGE HERO SECTION    */
+/* ========================= */
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 1rem;
+  gap: 2rem;
+  background: linear-gradient(135deg, #ffddd2, #ffece5);
+  border-radius: 18px;
+  margin: 1.5rem auto;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #b3544f;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.hero-btn {
+  background: #b3544f;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+  background: #8b3131;
+  transform: translateY(-3px);
+}
+
+.hero-img img {
+  width: 350px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+}
+
+/* ========================= */
+/* FEATURES SECTION          */
+/* ========================= */
+
+.features-section {
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #b3544f;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: #fff;
+  padding: 2rem 1rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+.feature-card .icon {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+/* CTA Section */
+.cta-home {
+  text-align: center;
+  background: linear-gradient(135deg, #d96c3b, #b3544f);
+  padding: 2rem;
+  border-radius: 14px;
+  color: #fff;
+  margin: 3rem 0;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #fff;
+  color: #b3544f;
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #ffeae4;
+  transform: translateY(-3px);
+}
 
 /* Base reset and site utilities (handcrafted CSS) */
 * { box-sizing: border-box; }
@@ -54,6 +173,39 @@ body { font-family: Arial, Helvetica, sans-serif; background: #fafafa; margin: 0
   .app-body { flex-direction:column; padding:0.5rem; }
   .ai-sidebar { width: 100%; left: 0; right: 0; top: 64px; height: calc(100vh - 64px); }
 }
+/* Navbar Beautiful Redesign */
+.nav-links a,
+.nav-link {
+  color: #fff;
+  padding: 0.55rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
+  text-decoration: none;
+  font-weight: 500;
+  backdrop-filter: blur(6px);
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.nav-link-active {
+  background: #fff !important;
+  color: #b3544f !important;
+  font-weight: 600 !important;
+  box-shadow: 0 3px 10px rgba(255,255,255,0.5);
+}
+
+/* Center nav links on desktop */
+@media (min-width: 769px) {
+  .nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 
 /* Quote banner shown on Home */
 .quote-banner {
@@ -107,6 +259,82 @@ body { font-family: Arial, Helvetica, sans-serif; background: #fafafa; margin: 0
   .nav-toggle { display:block; }
   .nav-links { flex-direction:column; gap:0.5rem; }
 }
+/* Theme toggle button */
+.btn-theme-toggle {
+  margin-left: 0.5rem;
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+  color: #fff;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.btn-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ======================= */
+/* Global Dark Mode Styles */
+/* ======================= */
+
+body.dark-mode {
+  background: #0f172a;
+  color: #f9fafb;
+}
+
+/* Header + footer dark look */
+body.dark-mode .site-header {
+  background: linear-gradient(90deg, #020617, #111827, #1f2937);
+}
+body.dark-mode .footer {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* Cards in dark mode slightly brighter */
+body.dark-mode .card,
+body.dark-mode .contact-form,
+body.dark-mode .contact-info {
+  background: #111827;
+  color: #e5e7eb;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.75);
+}
+
+/* Nav links tweak in dark mode */
+body.dark-mode .nav-links a,
+body.dark-mode .nav-link {
+  background: rgba(15, 23, 42, 0.7);
+}
+body.dark-mode .nav-links a:hover {
+  background: rgba(30, 64, 175, 0.9);
+}
+body.dark-mode .nav-link-active {
+  background: #e5e7eb !important;
+  color: #1f2937 !important;
+}
+/* 🌙 FIX: Home Feature Cards Text in Dark Mode */
+body.dark-mode .features-section .feature-card {
+  color: #03163d !important; /* light gray */
+}
+
+body.dark-mode .features-section .feature-card h3 {
+  color: #03163d !important; /* almost white */
+}
+
+body.dark-mode .features-section .feature-card p {
+  color: #03163d !important; /* very soft gray */
+}
+
+body.dark-mode .features-section .icon {
+  filter: brightness(1.2); /* emojis brighter */
+}
+
+
 
 /* Footer */
 .site-footer { background:#f3f4f6; padding:1.25rem; text-align:center; }
