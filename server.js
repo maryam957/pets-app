@@ -1,18 +1,16 @@
 const express = require('express');
 const cors = require('cors');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-if (!GEMINI_API_KEY) {
-  console.warn('WARNING: GEMINI_API_KEY is not set. Requests to /api/chat will fail.');
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+if (!OPENROUTER_API_KEY) {
+  console.warn('WARNING: OPENROUTER_API_KEY is not set. Requests to /api/chat will fail.');
 }
-
-const genAI = GEMINI_API_KEY ? new GoogleGenerativeAI(GEMINI_API_KEY) : null;
 
 app.post('/api/chat', async (req, res) => {
   try {
@@ -21,19 +19,36 @@ app.post('/api/chat', async (req, res) => {
       return res.status(400).json({ error: 'prompt is required' });
     }
 
-    if (!genAI) {
-      return res.status(500).json({ error: 'GEMINI_API_KEY is not configured on the server. Set it in your .env.' });
+    if (!OPENROUTER_API_KEY) {
+      return res.status(500).json({ error: 'OPENROUTER_API_KEY is not configured on the server. Set it in your .env.' });
     }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const reply = response.text();
-    
+    const response = await axios.post(
+      'https://openrouter.ai/api/v1/chat/completions',
+      {
+        model: 'deepseek/deepseek-chat',
+        messages: [
+          {
+            role: 'user',
+            content: prompt
+          }
+        ]
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': 'http://localhost:5173',
+          'X-Title': 'Pets App'
+        }
+      }
+    );
+
+    const reply = response.data.choices[0]?.message?.content || 'No response';
     res.json({ reply });
   } catch (err) {
-    console.error('Error in /api/chat', err.message || err);
-    res.status(500).json({ error: 'Gemini AI request failed: ' + (err.message || 'Unknown error') });
+    console.error('Error in /api/chat', err.response?.data || err.message || err);
+    res.status(500).json({ error: 'DeepSeek AI request failed: ' + (err.response?.data?.error?.message || err.message || 'Unknown error') });
   }
 });
 

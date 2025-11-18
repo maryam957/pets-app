@@ -33,8 +33,8 @@ function AIChat() {
     } catch (err) {
       console.error('AIChat error', err?.response?.data || err.message || err);
       const remoteMsg = err?.response?.data?.error || '';
-      if (remoteMsg && (remoteMsg.toLowerCase().includes('gemini_api_key') || remoteMsg.toLowerCase().includes('api_key'))) {
-        setError('Server is missing GEMINI_API_KEY. You can add a key to use the real AI, or use Demo Mode below.');
+      if (remoteMsg && (remoteMsg.toLowerCase().includes('api_key') || remoteMsg.toLowerCase().includes('openrouter'))) {
+        setError('Server is missing OPENROUTER_API_KEY. You can add a key to use the real AI, or use Demo Mode below.');
       } else {
         setError('Sorry — could not reach the AI service.');
       }
@@ -45,11 +45,11 @@ function AIChat() {
 
   const enableDemo = () => {
     setDemoMode(true);
-    setError('Demo mode enabled — this uses canned responses, not Gemini AI.');
+    setError('Demo mode enabled — this uses canned responses, not DeepSeek AI.');
   };
 
   const openSignup = () => {
-    window.open('https://makersuite.google.com/app/apikey', '_blank', 'noopener');
+    window.open('https://openrouter.ai/settings/keys', '_blank', 'noopener');
   };
 
   return (
@@ -88,7 +88,7 @@ function AIChat() {
         <div className="card" style={{background:'#fee2e2', color:'#991b1b', marginBottom: '1rem', padding: '0.75rem', fontSize: '0.9rem'}}>
           <div style={{marginBottom: '0.5rem'}}>{error}</div>
           <div style={{display:'flex', gap:'0.5rem', flexWrap: 'wrap'}}>
-            <button className="btn" style={{fontSize: '0.85rem', padding: '0.4rem 0.8rem'}} onClick={openSignup}>Get Gemini Key</button>
+            <button className="btn" style={{fontSize: '0.85rem', padding: '0.4rem 0.8rem'}} onClick={openSignup}>Get DeepSeek Key</button>
             <button className="btn" style={{fontSize: '0.85rem', padding: '0.4rem 0.8rem'}} onClick={enableDemo}>Use Demo Mode</button>
           </div>
         </div>
