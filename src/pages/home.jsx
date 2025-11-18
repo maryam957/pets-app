@@ -36,18 +36,7 @@ function Home() {
 
       {/* ⭐ Last Visited Banner */}
       {lastPage && (
-        <div
-          style={{
-            background: "#FFEFD5",
-            padding: "12px 20px",
-            borderRadius: "10px",
-            textAlign: "center",
-            marginBottom: "1.5rem",
-            fontWeight: "600",
-            color: "#6b4226",
-            boxShadow: "0px 3px 10px rgba(0,0,0,0.1)",
-          }}
-        >
+        <div className="last-visited-banner">
           👀 Last time, you visited: <b>{lastPage}</b>
         </div>
       )}

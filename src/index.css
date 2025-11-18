@@ -99,6 +99,18 @@
   text-align: center;
   background: linear-gradient(135deg, #d96c3b, #b3544f);
   padding: 2rem;
+}
+
+/* Last Visited Banner */
+.last-visited-banner {
+  background: #FFEFD5;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #6b4226;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
   border-radius: 14px;
   color: #fff;
   margin: 3rem 0;
