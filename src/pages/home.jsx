@@ -3,70 +3,103 @@ import axios from "axios";
 
 function Home() {
   const [quote, setQuote] = useState("");
-  const [lastPage, setLastPage] = useState("");
+  const [lastVisit, setLastVisit] = useState("");
 
-  // Load last visited page + quote API
+  // 🔹 Load last visited page from localStorage
   useEffect(() => {
-    // Last visited
     const page = localStorage.getItem("lastVisited");
-    if (page) {
-      let cleaned =
-        page === "/contact"
-          ? "Contact Page 🐾"
+    if (page && page !== "/") {
+      const pretty =
+        page === "/gallery"
+          ? "Gallery Page 🐾"
           : page === "/care"
           ? "Care Page 🐾"
-          : page === "/gallery"
-          ? "Gallery Page 🐾"
-          : "";
+          : page === "/contact"
+          ? "Contact Page 🐾"
+          : "Home Page 🐾";
 
-      setLastPage(cleaned);
+      setLastVisit(pretty);
     }
+  }, []);
 
-    // Quote API
+  // 🔹 Load quote from API
+  useEffect(() => {
     axios
       .get("https://dummyjson.com/quotes/random")
       .then((res) => setQuote(res.data.quote))
       .catch(() =>
-        setQuote("Paws, Love & Care – Because They Deserve the Best")
+        setQuote("Paws, Love & Care – Because They Deserve the Best.")
       );
   }, []);
 
   return (
     <div className="site-container">
-
-      {/* ⭐ Last Visited Banner */}
-      {lastPage && (
-        <div className="last-visited-banner">
-          👀 Last time, you visited: <b>{lastPage}</b>
+      {/*  Last visited banner (localStorage) */}
+      {lastVisit && (
+        <div className="last-visit-banner">
+          <span className="last-visit-icon" aria-hidden="true">
+            👀
+          </span>
+          <span>
+            Last time, you visited: <strong>{lastVisit}</strong>
+          </span>
         </div>
       )}
 
-      {/* ⭐ Quote Banner */}
+      {/* 🐾 Quote banner (API) */}
       {quote && (
-        <div className="quote-banner">
+        <div className="quote-banner home-quote-banner">
           <span className="quote-icon" aria-hidden>
             🐾
           </span>
-          <marquee className="marquee" behavior="scroll" scrollamount="5">
+          <marquee className="marquee" behavior="scroll" scrollAmount="5">
             {quote}
           </marquee>
         </div>
       )}
 
-      {/* 🌟 HERO SECTION */}
-      <section className="hero-section">
+      {/*  HERO SECTION */}
+      <section className="hero-section home-hero">
+        <div className="hero-decor hero-decor-left" />
+        <div className="hero-decor hero-decor-right" />
+
         <div className="hero-content">
-          <h1>Welcome to Pets Paradise 🐾</h1>
-          <p>Your one-stop place for pet care, love & companionship.</p>
-          <a href="/gallery" className="hero-btn">Explore Gallery</a>
+          <p className="hero-kicker">Welcome to Pets Paradise</p>
+          <h1 className="hero-title">
+            Take Good <span>Care of Pets</span>
+          </h1>
+          <p className="hero-text">
+            We help you keep your furry friends happy, healthy and full of life
+            with simple tips, expert guidance and a touch of love.
+          </p>
+
+          <div className="hero-actions">
+            <a href="/gallery" className="btn hero-btn-primary">
+              🐶 Explore Gallery
+            </a>
+            <a href="/contact" className="btn hero-btn-secondary">
+              📚 Contact Us
+            </a>
+          </div>
+
+          <div className="hero-underline">
+            <span />
+          </div>
         </div>
 
-        <div className="hero-img">
-          <img src="/assets/images/hero.png" alt="Pets" />
+        <div className="hero-image-wrapper">
+          
+          <img
+            src="/assets/images/pets.png"
+            alt="Cute cat and dog"
+            className="hero-image"
+          />
+          <div className="floating-paw paw-1">🐾</div>
+          <div className="floating-paw paw-2">❤️</div>
         </div>
       </section>
 
-      {/* 🌈 FEATURES */}
+      {/* 🌈 FEATURES SECTION (same as before) */}
       <section className="features-section">
         <h2 className="section-title">Why Pet Lovers Choose Us ❤️</h2>
 
@@ -85,7 +118,7 @@ function Home() {
 
           <div className="feature-card">
             <span className="icon">🏡</span>
-            <h3>Training & Grooming</h3>
+            <h3>Training &amp; Grooming</h3>
             <p>Learn simple tricks and grooming routines.</p>
           </div>
 
@@ -97,13 +130,14 @@ function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA SECTION */}
       <section className="cta-home">
         <h2>Your pet deserves the best 🧡</h2>
         <p>Explore tips, guides, and expert advice in our Care section.</p>
-        <a href="/care" className="cta-btn">Go To Pet Care</a>
+        <a href="/care" className="cta-btn">
+          Go To Pet Care
+        </a>
       </section>
-
     </div>
   );
 }

@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { db } from "../services/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -29,9 +28,10 @@ const AdminMessages = () => {
           <span className="message-count">{messages.length} total</span>
         </div>
 
+        {/* EMPTY STATE */}
         {messages.length === 0 && (
-          <div className="card text-center" style={{padding: '2rem', background: '#f9fafb'}}>
-            <p style={{fontSize: '1.1rem', color: '#6b7280'}}>No messages yet. Check back later!</p>
+          <div className="admin-empty-box">
+            <p className="admin-empty-text">No messages yet. Check back later!</p>
           </div>
         )}
 
@@ -41,9 +41,12 @@ const AdminMessages = () => {
               <div className="message-header">
                 <span className="message-name">👤 {m.name}</span>
                 <span className="message-date">
-                  {m.createdAt?.toDate ? new Date(m.createdAt.toDate()).toLocaleDateString() : 'N/A'}
+                  {m.createdAt?.toDate
+                    ? new Date(m.createdAt.toDate()).toLocaleDateString()
+                    : "N/A"}
                 </span>
               </div>
+
               <div className="message-body">
                 <p className="message-email">📧 {m.email}</p>
                 <p className="message-text">{m.message}</p>

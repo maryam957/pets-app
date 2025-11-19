@@ -13,7 +13,7 @@ const Contact = () => {
   const [remember, setRemember] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // Load saved email if cookie exists
+  // Load saved email from cookie
   useEffect(() => {
     const savedEmail = Cookies.get("savedEmail");
     if (savedEmail) {
@@ -37,9 +37,9 @@ const Contact = () => {
       return;
     }
 
-    // Save / Remove email in cookie depending on checkbox
+    // Save/Remove cookie
     if (remember) {
-      Cookies.set("savedEmail", form.email, { expires: 7 }); // save for 7 days
+      Cookies.set("savedEmail", form.email, { expires: 7 });
     } else {
       Cookies.remove("savedEmail");
     }
@@ -57,7 +57,7 @@ const Contact = () => {
 
       setForm({
         name: "",
-        email: remember ? form.email : "", // keep email if remember = true
+        email: remember ? form.email : "",
         message: "",
       });
     } catch (error) {
@@ -71,33 +71,31 @@ const Contact = () => {
       <h1 className="page-title">Contact Us</h1>
 
       <div className="contact-container">
-        {/* LEFT SIDE INFO */}
+
+        {/* Left Side Info */}
         <div className="contact-info">
           <h2>Get In Touch 🐾</h2>
           <p><i className="icon">📧</i> Email: support@petsapp.com</p>
           <p><i className="icon">📞</i> Phone: +1 (555) 123-4567</p>
           <p><i className="icon">📍</i> Address: 123 Pet Street, Animal City</p>
-          <p style={{ marginTop: "1rem", lineHeight: "1.8" }}>
-            We love hearing from pet lovers! Whether you have questions, feedback, 
-            or just want to share your pet's story, feel free to reach out.
+          <p className="info-description">
+            We love hearing from pet lovers! Whether you have questions,
+            feedback, or just want to share your pet's story, feel free to reach out.
           </p>
         </div>
 
-        {/* RIGHT SIDE FORM */}
+        {/* Right Side Form */}
         <div className="contact-form">
-          <h2 style={{ marginBottom: "1rem", fontSize: "1.5rem" }}>Send Us a Message</h2>
+          <h2 className="form-title">Send Us a Message</h2>
 
           {success && (
-            <div
-              className="card"
-              style={{ background: "#d1fae5", color: "#065f46", marginBottom: "1rem", padding: "0.75rem" }}
-            >
+            <div className="success-alert">
               ✓ Your message has been sent successfully!
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="contact-form-fields">
-            {/* Name */}
+            
             <div className="form-group">
               <label>Name</label>
               <input
@@ -109,7 +107,6 @@ const Contact = () => {
               />
             </div>
 
-            {/* Email */}
             <div className="form-group">
               <label>Email</label>
               <input
@@ -122,18 +119,15 @@ const Contact = () => {
               />
             </div>
 
-            {/* Remember Email Checkbox */}
-            <div
-              className="form-group"
-              style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "-5px" }}
-            >
+            {/* Remember Me */}
+            <div className="remember-row">
               <input
                 type="checkbox"
                 checked={remember}
                 onChange={() => setRemember(!remember)}
-                style={{ width: "17px", height: "17px" }}
+                className="remember-checkbox"
               />
-              <label style={{ fontWeight: "500" }}>Remember my email</label>
+              <label className="remember-label">Remember my email</label>
             </div>
 
             {/* Message */}
